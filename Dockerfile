@@ -1,8 +1,8 @@
 FROM php:8.2-apache
 
-# Install required PHP extensions
+# Install required PHP extensions and libraries
 RUN apt-get update && apt-get install -y \
-    git unzip libzip-dev libsqlite3-dev \
+    git unzip libzip-dev libsqlite3-dev libonig-dev \
     && docker-php-ext-install pdo pdo_sqlite zip mbstring
 
 # Enable Apache mod_rewrite
@@ -32,4 +32,5 @@ RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /et
 EXPOSE 80
 
 CMD ["apache2-foreground"]
+
 
